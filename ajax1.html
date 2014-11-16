@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Primeiro Exemplo com AJAX</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+</head>
+<body>
+
+	<fieldset>
+		<h1>Exemplo 1</h1>
+		<input type="button" value="$.ajax()" id='ajax'><br>
+		<textarea cols="110" rows="6" id='conteudo_ajax'></textarea><br>
+		<input type="button" value="$.get()" id='get'><br>
+		<textarea cols="110" rows="6" id='conteudo_get'></textarea><br>
+		<input type="button" value="$.post()" id='post'><br>
+		<textarea cols="110" rows="6" id='conteudo_post'></textarea><br>
+	</fieldset>
+
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#ajax').on('click', AJAX);
+			$('#get').on('click', GET);
+			$('#post').on('click', POST);
+
+
+			function AJAX(){
+				$.ajax({
+					url: 'conteudo1.html',
+					type: 'GET',
+					success: function(retorno){
+						$('#conteudo_ajax').html(retorno);
+					}
+				});	
+			}
+
+			function GET(){
+				$.get(
+					"conteudo1.html",
+					function(retorno){
+						$('#conteudo_get').html(retorno);
+					}
+				);
+			}
+
+			function POST(){
+				$.post(
+					"conteudo1.html",
+					function(retorno){
+						$('#conteudo_post').html(retorno);
+					}
+				);
+			}
+		});
+	</script>
+
+</body>
+</html>
