@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Segundo Exemplo com AJAX</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+</head>
+<body>
+
+	<fieldset>
+		<h1>Exemplo 2</h1>
+
+		<!-- Requisição $.ajax() -->
+		<input type="button" value="$.ajax()" id='ajax'><br>
+		<span class='box ajax'></span>
+
+		<!-- Requisição $.get() -->
+		<input type="button" value="$.get()" id='get'><br>
+		<span class='box get'>
+			<ul id='lista-times'>
+				<li>* Corinthians</li>
+				<li>* Palmeiras</li>
+			</ul>
+		</span>
+
+		<!-- Requisição $.post() -->
+		<input type="button" value="$.post()" id='post'><br>
+		<span class='box post'>
+			
+		</span>
+
+	</fieldset>
+
+	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#ajax').on('click', AJAX);
+			$('#get').on('click', GET);
+			$('#post').on('click', POST);
+
+			function AJAX(){
+				$.ajax({
+					url: "header.html",
+					type: "POST",
+					success: function(retorno){
+						$('.ajax').html(retorno);
+					}
+				});
+			}
+
+			function GET(){
+				$.get(
+					"lista.html",
+					function (result){
+						$('#lista-times').append(result);
+					}
+				);
+			}
+
+			function POST(){
+				$.post(
+					"select.html",
+					function (retorno){
+						$('.post').html(retorno);
+					}
+				);
+			}
+		});
+	</script>
+
+</body>
+</html>

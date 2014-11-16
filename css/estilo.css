@@ -10,6 +10,24 @@ h1{
 	margin-bottom: 20px;
 }
 
+h2{
+	font-size: 25px;
+	font-weight: bold;
+	color: red;
+}
+
+h3{
+	font-size: 25px;
+	font-weight: bold;
+	color: green;
+}
+
+h4{
+	font-size: 25px;
+	font-weight: bold;
+	color: blue;
+}
+
 input[type='button']{
 	width: 100px;
 	height: 50px;
@@ -28,4 +46,13 @@ fieldset{
 	border:10px solid #B73030;
 	margin: 10px auto;
 	padding: 20px;
+}
+
+.box{
+	display: inline-block;
+	width: 100%;
+	min-height: 70px;
+	border: 3px solid #fff;
+	margin: 10px 0 40px 0;
+	padding: 5px;
 }
