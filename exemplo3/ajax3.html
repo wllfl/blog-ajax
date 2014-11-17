@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Terceiro Exemplo com AJAX</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+</head>
+<body>
+
+	<fieldset>
+		<h1>Exemplo 3</h1>
+
+		<!-- Requisição $.ajax() -->
+		<input type="button" value="$.ajax()" id='ajax'><br>
+		<span class='box ajax'>
+			Estado:
+			<select class='estado'>
+				<option>Carregar Estado</option>
+			</select><br><br>
+			Cidade:
+			<select class='cidade'>
+				<option>Carregar Cidade</option>
+			</select><br>
+			<span class='aguarde'></span>
+		</span>
+
+		<!-- Requisição $.get() -->
+		<input type="button" value="$.get()" id='get'><br>
+		<span class='box get'>
+			
+		</span>
+
+		<!-- Requisição $.post() -->
+		<input type="button" value="$.post()" id='post'><br>
+		<span class='box post'>
+			
+		</span>
+
+	</fieldset>
+
+	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#ajax').on('click', AJAX_UF);
+		$('.estado').on('change', AJAX_CIDADE);
+		$('#get').on('click', GET_ESTADO);
+		$('#post').on('click', POST_ESTADO);
+
+		function AJAX_UF(){
+			$.ajax({
+				url: "consulta.php",
+				type: "GET",
+				data :{ acao: 'carregar_uf'},
+				success: function(retorno){
+					$('.estado').html(retorno);
+				}
+
+			});
+		}
+
+		function AJAX_CIDADE(){
+			var id = $('.estado').val();
+
+			$.ajax({
+				url: "consulta.php",
+				type: "GET",
+				data :{ acao: 'carregar_cidade', id_uf: id},
+				beforeSend: function(){
+					$('.aguarde').html("<img src='../img/aguarde.gif'>");
+				},
+				success: function(retorno){
+					$('.cidade').html(retorno);
+					$('.aguarde').html("");
+				}
+
+			});
+		}
+
+		function GET_ESTADO(){
+			$.get(
+				"consulta.php",
+				{acao: 'carregar_lista'},
+				function (retorno){
+					$('.get').html(retorno);
+				}
+			);
+		}
+
+		function POST_ESTADO(){
+			$('.post').html("<img src='../img/aguarde.gif'>");
+
+			$.post(
+				"consulta_json.php",
+				{acao: 'carregar_json'},
+				function (retorno){
+					var json = $.parseJSON(retorno);
+					var html = "";
+
+					for(i=0; i<json.length; i++){
+						var estado = json[i].descricao; 
+						html = html + "<p>" + estado + "</p>";
+					}
+
+					$('.post').html(html);
+				}
+			);
+		}
+	})
+	</script>
+
+</body>
+</html>
