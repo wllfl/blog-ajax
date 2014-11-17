@@ -45,7 +45,7 @@
 		$('#ajax').on('click', AJAX_UF);
 		$('.estado').on('change', AJAX_CIDADE);
 		$('#get').on('click', GET_ESTADO);
-		$('#post').on('click', POST_ESTADO);
+		$('#post').on('click', POST_CIDADE);
 
 		function AJAX_UF(){
 			$.ajax({
@@ -87,7 +87,7 @@
 			);
 		}
 
-		function POST_ESTADO(){
+		function POST_CIDADE(){
 			$('.post').html("<img src='../img/aguarde.gif'>");
 
 			$.post(
@@ -98,8 +98,8 @@
 					var html = "";
 
 					for(i=0; i<json.length; i++){
-						var estado = json[i].descricao; 
-						html = html + "<p>" + estado + "</p>";
+						var cidade = json[i].descricao; 
+						html = html + "<p>" + cidade + "</p>";
 					}
 
 					$('.post').html(html);
