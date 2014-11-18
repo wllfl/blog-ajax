@@ -8,7 +8,7 @@ if($acao == 'carregar_json'):
 	$stm->execute();
 	$dados = $stm->FetchAll(PDO::FETCH_OBJ);
 
-	sleep(5);
+	sleep(2);
 	echo json_encode($dados);
 endif;
 

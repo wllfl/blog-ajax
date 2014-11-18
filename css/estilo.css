@@ -56,3 +56,15 @@ fieldset{
 	margin: 10px 0 40px 0;
 	padding: 5px;
 }
+
+table{
+	margin: 5px;
+}
+
+table tr, th, td{
+	border: 1px solid #000;
+}
+
+table th{
+	width: 100px;
+}

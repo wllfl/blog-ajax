@@ -15,6 +15,7 @@ if($acao == 'carregar_uf'):
 		$retorno .= "<option value='{$reg->id}'>{$reg->descricao}</option>";
 	endforeach;
 
+	sleep(2);
 	echo $retorno;
 endif;
 
@@ -45,6 +46,7 @@ if($acao == 'carregar_lista'):
 	endforeach;
 	$retorno .= "</ul>";
 
+	sleep(2);
 	echo $retorno;
 endif;
 ?>

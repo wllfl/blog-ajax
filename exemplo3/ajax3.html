@@ -51,11 +51,14 @@
 			$.ajax({
 				url: "consulta.php",
 				type: "GET",
-				data :{ acao: 'carregar_uf'},
+				data: {acao: 'carregar_uf'},
+				beforeSend: function(){
+					$('.aguarde').html("<img src='../img/aguarde.gif'>");
+				},
 				success: function(retorno){
 					$('.estado').html(retorno);
+					$('.aguarde').html("");
 				}
-
 			});
 		}
 
@@ -65,7 +68,7 @@
 			$.ajax({
 				url: "consulta.php",
 				type: "GET",
-				data :{ acao: 'carregar_cidade', id_uf: id},
+				data: {acao: 'carregar_cidade', id_uf: id},
 				beforeSend: function(){
 					$('.aguarde').html("<img src='../img/aguarde.gif'>");
 				},
@@ -73,14 +76,15 @@
 					$('.cidade').html(retorno);
 					$('.aguarde').html("");
 				}
-
 			});
 		}
 
 		function GET_ESTADO(){
+			$('.get').html("<img src='../img/aguarde.gif'>");
+
 			$.get(
 				"consulta.php",
-				{acao: 'carregar_lista'},
+				{acao:'carregar_lista'},
 				function (retorno){
 					$('.get').html(retorno);
 				}
@@ -93,12 +97,12 @@
 			$.post(
 				"consulta_json.php",
 				{acao: 'carregar_json'},
-				function (retorno){
+				function(retorno){
 					var json = $.parseJSON(retorno);
 					var html = "";
 
 					for(i=0; i<json.length; i++){
-						var cidade = json[i].descricao; 
+						var cidade = json[i].descricao;
 						html = html + "<p>" + cidade + "</p>";
 					}
 
@@ -106,6 +110,7 @@
 				}
 			);
 		}
+
 	})
 	</script>
 
